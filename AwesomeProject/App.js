@@ -8,7 +8,14 @@ import StyleApp  from './src/components/StyleApp';
 import BoxApp from './src/components/BoxApp';
 import Header from './src/components/Header';
 
+import BaseTextInput from './src/components2/BaseTextInput';
+import ButtonGroup from './src/components2/ButtonGroup';
+import Button2  from './src/components2/Button2';
+import SectionListBasic from './src/components2/SectionListBasic';
+import FlatListBasic from './src/components2/FlatListBasic';
+
 export default function App() {
+
   return (
     // <View style={styles.container}>
     //   <View style={{flex:1,backgroundColor:'red'}}>
@@ -36,10 +43,14 @@ export default function App() {
     //   </View>
       
     // </View>
-    <View>
-      <Header>Hello</Header>
+    <View style = {styles.container}>
+      <BaseTextInput></BaseTextInput>
+      {/* <ButtonGroup></ButtonGroup> */}
+      <Button2></Button2>
+      {/* <SectionListBasic></SectionListBasic> */}
+      <FlatListBasic></FlatListBasic>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -49,5 +60,6 @@ const styles = StyleSheet.create({
     textDecorationColor : '#D0F',
     color:'#D0D',
     justifyContent: 'center',
+    alignItems:'center',
   },
 });
