@@ -6,9 +6,9 @@ export default class base extends Component{
         return(
             <View>
                 <Text style={styles.text1}>상세 스크린!</Text>
-                <TouchableOpacity onPress={()=>this.props.goProps.navigation.push('Detail')}><Text style={styles.text2}>디테일의 디테일 가기</Text></TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.goProps.navigation.goBack()}><Text style={[styles.text2, {color:'gold'}]}>뒤로 가기</Text></TouchableOpacity>
-                <TouchableOpacity onPress={()=>this.props.goProps.navigation.popToTop()}><Text style={[styles.text2,{color:'red'}]}>처음으로 가기</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.push('Detail')}><Text style={styles.text2}>디테일의 디테일 가기</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.goBack()}><Text style={[styles.text2, {color:'gold'}]}>뒤로 가기</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=>this.props.navigation.popToTop()}><Text style={[styles.text2,{color:'red'}]}>처음으로 가기</Text></TouchableOpacity>
 
                 {/* <TouchableOpacity onPress={()=>this.props.goProps.navigation.navigate('Detail')}><Text style={styles.text2}>디테일의 디테일 가기</Text></TouchableOpacity>
                 <TouchableOpacity onPress={this.props.link1} props={this.props}><Text style={[styles.text2, {color:'gold'}]}>뒤로 가기</Text></TouchableOpacity>

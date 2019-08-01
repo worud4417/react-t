@@ -3,7 +3,6 @@ import {StyleSheet,Text,View, TouchableOpacity} from 'react-native';
 
 export default class base extends Component{
     render(){
-        console.log(this.props.props)
         return(
             <View>
                 <Text style={styles.text1}>홈 스크린!</Text>

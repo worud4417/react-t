@@ -33,12 +33,10 @@ const TabNavigator = createBottomTabNavigator({
 
 
 const AppContainer = createAppContainer(TabNavigator);
-const AppContainer1 = createAppContainer(AppNavigator);
 
 export default function App() {
   return (
       <AppContainer></AppContainer>
-      
   );
 }
 
@@ -62,3 +60,5 @@ const defaultNavigationOptions={
     },
   },
 };
+
+//https://drive.google.com/drive/folders/1l0jzgFwZoUx4nT78JI8vZlxa8WZ25wom
