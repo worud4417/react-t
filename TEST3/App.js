@@ -5,6 +5,7 @@ import DetailScreen from './src/screens/DetailScreen.js';
 import HomeScreen from './src/screens/HomeScreen.js';
 import {createStackNavigator,createAppContainer,createBottomTabNavigator} from 'react-navigation';
 import SettingScreen from './src/screens/SettingScreen.js';
+import BoardCreateScreen from './src/screens/BoardCreateScreen.js';
 
 const AppNavigator = createStackNavigator({
   Home:{
@@ -12,6 +13,9 @@ const AppNavigator = createStackNavigator({
   },
   Detail:{
     screen:DetailScreen,
+  },
+  Create:{
+    screen:BoardCreateScreen,
   }
 });
 
@@ -43,7 +47,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f0f',
     alignItems: 'center',
     justifyContent: 'center',
   },

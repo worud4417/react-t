@@ -5,7 +5,7 @@ export default class MyButton extends Component{
     render(){
         return(
             <View>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={this.props.onPress}>
                     <Text style={{backgroundColor:"orange",color:"white",fontSize:20}}>글 쓰기</Text>
                 </TouchableOpacity>
             </View>

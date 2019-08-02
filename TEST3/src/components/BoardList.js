@@ -3,7 +3,7 @@ import {
     BoardItem,
     View,
     Text,
-    StyleSheet
+    StyleSheet,
 } from 'react-native';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -20,7 +20,6 @@ export default class BoardList extends Component{
     }
 
     render(){
-        console.log(this.props.board)
         return(
             <View style={{flex:1,justifyContent:"center",alignContent:"center",width:'100%',marginTop:20}}>
                 <Text style={{fontSize:20,fontWeight:"900",marginBottom:20,marginLeft:20}}>

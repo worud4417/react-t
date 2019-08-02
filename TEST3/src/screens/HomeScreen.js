@@ -27,6 +27,29 @@ export default class HomeScreen extends Component{
       };
     }
 
+    createBoard(boardItem){
+      const itemKey = (this.state.board.length+1).toString()
+      const item = {
+        key: itemKey,
+        title : boardItem.title,
+        content : boardItem.content
+      }
+      const board = this.state.board.concat(item);
+      this.setState({board: board})
+      return
+    }
+
+    deleteBoard(key){
+      const board = this.state.board.filter(
+        (item) => {
+          if (item.key != key){
+            return item
+          }
+        }
+      )
+      return
+    }
+
     render(){
     return (
         <View style={styles.container}>
@@ -34,8 +57,10 @@ export default class HomeScreen extends Component{
             <TouchableOpacity onPress={()=>this.props.navigation.navigate("Setting")}>
                     <Text style={{color:'red'}}>Setting 가기</Text>
             </TouchableOpacity>
-            <MyButton></MyButton>
-            <BoardList board={this.state.board} navigation={this.props.navigation}/>
+            <MyButton onPress={()=>this.props.navigation.push('Create',{
+              'createFunc':this.createBoard.bind(this)
+            })}></MyButton>
+            <BoardList board={this.state.board} navigation={this.props.navigation} delete={this.deleteBoard}/>
         </View>
       )
     }
@@ -44,7 +69,7 @@ export default class HomeScreen extends Component{
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#3333',
       alignItems: 'center',
     },
   });
