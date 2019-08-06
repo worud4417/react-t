@@ -9,13 +9,21 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class BoardList extends Component{
 
+    constructor(props){
+        super(props)
+    }
+
     renderItem({item}){
         return(
+            <View>
            <TouchableOpacity style={{flex:1,width:"100%",flexDirection:'row',borderWidth:1}}
            onPress={()=>this.props.navigation.push('Detail',{item:item})}>
                <Text style={{fontSize:24,flex:2}}>{item.key}</Text>
                <Text style={{fontSize:24,flex:10}}>{item.title}</Text>
            </TouchableOpacity>
+           <TouchableOpacity onPress={()=>this.props.deleteFunc(item.key)}><Text>삭제</Text></TouchableOpacity>
+           <TouchableOpacity onPress={()=>this.props.navigation.push('Modified',{item:item,editFunc:this.props.editFunc})}><Text>글 수정</Text></TouchableOpacity>
+           </View>
         )
     }
 

@@ -34,6 +34,7 @@ export default class DetailScreen extends Component{
         <Text style={{fontSize:30,fontWeight:'bold'}}>상세페이지</Text>
         <Text style={styles.title}>{this.props.navigation.getParam('item').title}</Text>
         <Text style={styles.body}>{this.props.navigation.getParam('item').content}</Text>
+        <TouchableOpacity onPress={()=>this.props.navigation.navigate("Modified")}><Text>글 수정</Text></TouchableOpacity>
       </View>
     )
   }

@@ -12,12 +12,10 @@ export default class BoardCreate extends Component{
 
     titleChanged(title){
         this.setState({title})
-        console.log(this.state.title)
     }
 
     textChange(text){
         this.setState({content:text})
-        console.log(this.state.context)
     }
 
     submitBoard(){

@@ -23,12 +23,14 @@ export default class HomeScreen extends Component{
     constructor(props){
       super(props);
       this.state ={
-        board:board
+        board:board,
+        lastBoardId:3
       };
     }
 
     createBoard(boardItem){
-      const itemKey = (this.state.board.length+1).toString()
+      this.setState({lastBoardId:(this.state.lastBoardId+1)})
+      const itemKey = this.state.lastBoardId.toString()
       const item = {
         key: itemKey,
         title : boardItem.title,
@@ -47,7 +49,26 @@ export default class HomeScreen extends Component{
           }
         }
       )
+      this.setState({board:board})
       return
+    }
+
+    editBoard(itemKey,title,content){
+      const newBoard = this.state.board.map(
+        (item)=>{
+          if(item.key == itemKey){
+            return {
+              key:itemKey,
+              title:title,
+              content:content
+            }
+          }
+          else{
+            return item
+          }
+        }
+      )
+      this.setState({board:newBoard})
     }
 
     render(){
@@ -60,7 +81,8 @@ export default class HomeScreen extends Component{
             <MyButton onPress={()=>this.props.navigation.push('Create',{
               'createFunc':this.createBoard.bind(this)
             })}></MyButton>
-            <BoardList board={this.state.board} navigation={this.props.navigation} delete={this.deleteBoard}/>
+            <BoardList board={this.state.board} navigation={this.props.navigation} deleteFunc={this.deleteBoard.bind(this)}
+            editFunc={this.editBoard.bind(this)}/>
         </View>
       )
     }

@@ -6,6 +6,7 @@ import HomeScreen from './src/screens/HomeScreen.js';
 import {createStackNavigator,createAppContainer,createBottomTabNavigator} from 'react-navigation';
 import SettingScreen from './src/screens/SettingScreen.js';
 import BoardCreateScreen from './src/screens/BoardCreateScreen.js';
+import ModifiedScreen from './src/screens/ModifiedScreen.js';
 
 const AppNavigator = createStackNavigator({
   Home:{
@@ -16,6 +17,9 @@ const AppNavigator = createStackNavigator({
   },
   Create:{
     screen:BoardCreateScreen,
+  },
+  Modified:{
+    screen:ModifiedScreen,
   }
 });
 

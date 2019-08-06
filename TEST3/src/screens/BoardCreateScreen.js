@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
     main:{
         alignContent:'center',
         color:'blue',
-
     }
 }
 )
