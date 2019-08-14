@@ -34,22 +34,32 @@ let content =[
     }
 ]
 
-export default class FirstScreen extends Component {
+export default class FirstScreen extends React.Component {
 
     constructor(props){
         super(props);
         this.state={
-            content:content
+            content:content,
+            MenuHidden : false
         }
     };
 
     static navigationOptions = ({navigation})=>{
-        console.log("First")
         return{
-            tabBarLabel:"App",
+            headerLeft:(
+                <TouchableOpacity onPress={()=>{}}>
+                    <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
+                </TouchableOpacity>
+            ),
+            headerRight:(
+                <TouchableOpacity>
+                     <Image source={require('../../assets/bell.png')} style={styles.headerRight}></Image>
+                </TouchableOpacity>
+            ),
             headerStyle:{
-                backgroundColor:"black",
+                backgroundColor:"red",
             },
+            title:"GAMEPAN"
         }
     }
 
@@ -61,3 +71,16 @@ export default class FirstScreen extends Component {
         )
     }
 }
+
+const styles= StyleSheet.create({
+    headerLeft:{
+        width:20,
+        height:20,
+        marginLeft:15
+    },
+    headerRight:{
+        width:20,
+        height:20,
+        marginRight:15
+    }
+})

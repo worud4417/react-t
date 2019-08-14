@@ -15,54 +15,95 @@ const defaultNavigationOptions={
   },
 };
 
-const TabNavigator  = createBottomTabNavigator({
-  First: {
-    screen: FirstScreen,
-    navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: ({ tintColor }) => (
-        <Image source={require('./assets/home.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-      )
-    } 
+const HomeStack = createStackNavigator({
+  'First':{
+    screen:FirstScreen
   },
-  GameChannel: {
-    screen: GameChannelScreen,
-    navigationOptions: {
-      tabBarLabel: 'GameCh',
-      tabBarIcon: ({ tintColor }) => (
-        <Image source={require('./assets/channel.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-      )
-    }
-  }, 
-  HotIssue: {
-    screen: HotIssueScreen,
-    navigationOptions: {
-      tabBarLabel: 'Hot',
-      tabBarIcon: ({ tintColor }) => (
-        <Image source={require('./assets/sun.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-      )
-    }
+},{
+  defaultNavigationOptions
+})
+
+const GameChannelStack = createStackNavigator({
+  'GameChannel':{
+    screen:GameChannelScreen
   },
-  Personal: {
-    screen: PersonalScreen,
-    navigationOptions: {
-      tabBarLabel: 'Setting',
-      tabBarIcon: ({ tintColor }) => (
-        <Image source={require('./assets/settings.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-      )
-    }
+},{
+  defaultNavigationOptions
+})
+
+const HotIssueStack = createStackNavigator({
+  'HotIssue':{
+    screen:HotIssueScreen
   },
-  Transaction: {
-    screen: TransactionScreen,
-    navigationOptions: {
-      tabBarLabel: 'Trans',
-      tabBarIcon: ({ tintColor }) => (
-        <Image source={require('./assets/transaction.png')} style={{ height: 24, width: 24, tintColor: tintColor }} />
-      )
-    }
+},{
+  defaultNavigationOptions
+})
+
+const PersonalStack = createStackNavigator({
+  'Personal':{
+    screen:PersonalScreen
+  },
+},{
+  defaultNavigationOptions
+})
+
+const TransactionStack = createStackNavigator({
+  'Transaction':{
+    screen:TransactionScreen
+  },
+},{
+  defaultNavigationOptions
+})
+
+const tabNavigator = createBottomTabNavigator({
+  'Home':{
+    screen:HomeStack
+  },
+  'GameChannel':{
+    screen:GameChannelStack
+  },
+  'HotIssue':{
+    screen:HotIssueStack
+  },
+  'Personal':{
+    screen:PersonalStack
+  },
+  'Transaction':{
+    screen:TransactionStack
   }
-}, 
+},
 {
+  defaultNavigationOptions:({navigation})=>({
+    tabBarIcon:({focused,horizontal,tintColor})=>{
+      const {routeName} = navigation.state;
+      let iconName;
+      if(routeName === 'Home'){
+        iconName = './assets/home.png';
+        return (
+          <Image source={require('./assets/home.png')} style={{width:20,height:20}}></Image>
+          );
+      }
+      else if(routeName === 'GameChannel'){
+        return (
+          <Image source={require('./assets/channel.png')} style={{width:20,height:20}}></Image>
+          );
+      }
+      else if(routeName === 'HotIssue'){
+        return (
+          <Image source={require('./assets/sun.png')} style={{width:20,height:20}}></Image>
+          );
+      }
+      else if(routeName === 'Personal'){
+        return (
+          <Image source={require('./assets/settings.png')} style={{width:20,height:20}}></Image>
+          );
+      }
+      else if(routeName === 'Transaction'){
+        return (
+          <Image source={require('./assets/transaction.png')} style={{width:20,height:20}}></Image>
+          );
+      }
+    },
     tabBarOptions: {
       activeTintColor: 'red',
       inactiveTintColor: 'grey',
@@ -75,21 +116,10 @@ const TabNavigator  = createBottomTabNavigator({
         elevation: 5
       }
     }
-},
-{
-  defaultNavigationOptions
+  })
 })
 
-const StackNavigator = createStackNavigator({
-  tab:{
-    screen:TabNavigator
-  }
-},
-{
-  defaultNavigationOptions
-});
-
-const AppContainer = createAppContainer(StackNavigator);
+const AppContainer = createAppContainer(tabNavigator)
 
 export default class App extends React.Component {
 
@@ -106,7 +136,7 @@ export default class App extends React.Component {
     },1000)
     if(!this.state.time){
         return(
-            <View style={{flex:1}}>
+            <View style={{flex:1}} >
                 <Image style={styles.image} source={require('./assets/doorimage1.jpg')}></Image>
             </View>
         )
