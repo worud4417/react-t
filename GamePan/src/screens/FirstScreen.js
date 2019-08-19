@@ -47,7 +47,7 @@ export default class FirstScreen extends React.Component {
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity onPress={()=>{}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Menu')}}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -56,10 +56,6 @@ export default class FirstScreen extends React.Component {
                      <Image source={require('../../assets/bell.png')} style={styles.headerRight}></Image>
                 </TouchableOpacity>
             ),
-            headerStyle:{
-                backgroundColor:"red",
-            },
-            title:"GAMEPAN"
         }
     }
 

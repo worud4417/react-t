@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 import {View,Text,Image,StyleSheet,TouchableOpacity} from 'react-native';
 
-export default class PersonalScreen extends Component{
+export default class SearchScreen extends Component{
 
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate('Menu')}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -15,17 +15,13 @@ export default class PersonalScreen extends Component{
                      <Image source={require('../../assets/bell.png')} style={styles.headerRight}></Image>
                 </TouchableOpacity>
             ),
-            headerStyle:{
-                backgroundColor:"red",
-            },
-            title:"GAMEPAN"
         }
     }
-      
+
     render(){
         return(
             <View>
-                <Text>PersonalScreen</Text>
+                <Text>SearchScreen</Text>
             </View>
         )
     }

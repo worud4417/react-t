@@ -1,12 +1,14 @@
 import React,{Component} from 'react';
-import {View,Text,Image,StyleSheet,TouchableOpacity} from 'react-native';
+import {View,Text,Image,StyleSheet,TouchableOpacity,AsyncStorage} from 'react-native';
 
-export default class HotIssueScreen extends Component{
+import LoginScreen from './LoginScreen';
+
+export default class MyScreen extends Component{
 
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity>
+                <TouchableOpacity onP ress={()=>{navigation.navigate('Menu')}}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -15,17 +17,14 @@ export default class HotIssueScreen extends Component{
                      <Image source={require('../../assets/bell.png')} style={styles.headerRight}></Image>
                 </TouchableOpacity>
             ),
-            headerStyle:{
-                backgroundColor:"red",
-            },
-            title:"GAMEPAN"
         }
     }
 
     render(){
         return(
             <View>
-                <Text>HotIssueScreen</Text>
+                <LoginScreen></LoginScreen>
+                <Text>LoginSuccess</Text>
             </View>
         )
     }

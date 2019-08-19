@@ -6,7 +6,7 @@ export default class TransactionScreen extends Component{
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Menu')}}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -15,10 +15,6 @@ export default class TransactionScreen extends Component{
                      <Image source={require('../../assets/bell.png')} style={styles.headerRight}></Image>
                 </TouchableOpacity>
             ),
-            headerStyle:{
-                backgroundColor:"red",
-            },
-            title:"GAMEPAN"
         }
     }
       

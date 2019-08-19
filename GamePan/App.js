@@ -1,48 +1,68 @@
 import React from 'react';
-import { StyleSheet, Text, View,Image} from 'react-native';
+import { StyleSheet, Text, View,Image,ImageBackground,AsyncStorage} from 'react-native';
 import {createAppContainer,createStackNavigator,createBottomTabNavigator} from 'react-navigation'
 
 import FirstScreen from './src/screens/FirstScreen';
-import GameChannelScreen from './src/screens/GameChannelScreen';
-import HotIssueScreen from './src/screens/HotIssueScreen';
-import PersonalScreen from './src/screens/PersonalScreen';
+import SearchScreen from './src/screens/SearchScreen';
+import MessageScreen from './src/screens/MessageScreen';
+import MyScreen from './src/screens/MyScreen';
 import TransactionScreen from './src/screens/TransactionScreen';
+import MenuScreen from './src/screens/MenuScreen'
+
+class Back extends React.Component{
+  render(){
+    return(
+      <ImageBackground source={require('./assets/banner.jpg')} style={styles.imageback}>
+        <Text style={styles.headerText}>GAME PAN</Text>
+      </ImageBackground>
+    )
+  }
+}
 
 const defaultNavigationOptions={
-  headerTintColor:'white',
-  headerStyle:{
-    backgroundColor:'tomato',
-  },
+  headerTitle:<Back></Back>
 };
 
 const HomeStack = createStackNavigator({
   'First':{
     screen:FirstScreen
   },
-},{
-  defaultNavigationOptions
-})
-
-const GameChannelStack = createStackNavigator({
-  'GameChannel':{
-    screen:GameChannelScreen
+  'Menu':{
+    screen:MenuScreen
   },
 },{
   defaultNavigationOptions
 })
 
-const HotIssueStack = createStackNavigator({
-  'HotIssue':{
-    screen:HotIssueScreen
+const SearchStack = createStackNavigator({
+  'Search':{
+    screen:SearchScreen
   },
+  'Menu':{
+    screen:MenuScreen
+  }
 },{
   defaultNavigationOptions
 })
 
-const PersonalStack = createStackNavigator({
-  'Personal':{
-    screen:PersonalScreen
+const MessageStack = createStackNavigator({
+  'Message':{
+    screen:MessageScreen
   },
+  'Menu':{
+    screen:MenuScreen
+  }
+},{
+  defaultNavigationOptions
+})
+
+const MyStack = createStackNavigator({
+  'My':{
+    screen:MyScreen
+  },
+  'Menu':{
+    screen:MenuScreen
+  }
 },{
   defaultNavigationOptions
 })
@@ -51,25 +71,28 @@ const TransactionStack = createStackNavigator({
   'Transaction':{
     screen:TransactionScreen
   },
+  'Menu':{
+    screen:MenuScreen
+  }
 },{
   defaultNavigationOptions
 })
 
 const tabNavigator = createBottomTabNavigator({
+  'My':{
+    screen:MyStack
+  },
+  'Search':{
+    screen:SearchStack
+  },
   'Home':{
     screen:HomeStack
   },
-  'GameChannel':{
-    screen:GameChannelStack
-  },
-  'HotIssue':{
-    screen:HotIssueStack
-  },
-  'Personal':{
-    screen:PersonalStack
-  },
   'Transaction':{
     screen:TransactionStack
+  },
+  'Message':{
+    screen:MessageStack
   }
 },
 {
@@ -83,19 +106,19 @@ const tabNavigator = createBottomTabNavigator({
           <Image source={require('./assets/home.png')} style={{width:20,height:20}}></Image>
           );
       }
-      else if(routeName === 'GameChannel'){
+      else if(routeName === 'Search'){
         return (
-          <Image source={require('./assets/channel.png')} style={{width:20,height:20}}></Image>
+          <Image source={require('./assets/search.png')} style={{width:20,height:20}}></Image>
           );
       }
-      else if(routeName === 'HotIssue'){
+      else if(routeName === 'Message'){
         return (
-          <Image source={require('./assets/sun.png')} style={{width:20,height:20}}></Image>
+          <Image source={require('./assets/message.png')} style={{width:20,height:20}}></Image>
           );
       }
-      else if(routeName === 'Personal'){
+      else if(routeName === 'My'){
         return (
-          <Image source={require('./assets/settings.png')} style={{width:20,height:20}}></Image>
+          <Image source={require('./assets/my.png')} style={{width:20,height:20}}></Image>
           );
       }
       else if(routeName === 'Transaction'){
@@ -115,8 +138,9 @@ const tabNavigator = createBottomTabNavigator({
         shadowOpacity: 0.5,
         elevation: 5
       }
-    }
-  })
+    },
+  }),
+  initialRouteName:'Home'
 })
 
 const AppContainer = createAppContainer(tabNavigator)
@@ -128,6 +152,17 @@ export default class App extends React.Component {
       this.state={
           time:false
       }
+      AsyncStorage.clear()
+      this._setUser()
+  }
+
+  _setUser = async()=>{
+    try{
+      await AsyncStorage.setItem('SuperUser','0000')
+    }
+    catch(error){
+      await AsyncStorage.setItem('error','true')
+    }
   }
 
   render(){
@@ -154,5 +189,19 @@ const styles=StyleSheet.create({
       width:'100%',
       height:'100%',
       flex:1
+  },
+  headerText:{
+    fontSize:30,
+    fontFamily:"monospace",
+    color:"black",
+    fontWeight:"bold"
+  },
+  imageback:{
+    width:"120%",
+    height:"100%",
+    position:'absolute',
+    left:"-20%",
+    justifyContent:'center',
+    alignItems:'center'
   }
 })
