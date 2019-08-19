@@ -8,6 +8,7 @@ import MessageScreen from './src/screens/MessageScreen';
 import MyScreen from './src/screens/MyScreen';
 import TransactionScreen from './src/screens/TransactionScreen';
 import MenuScreen from './src/screens/MenuScreen'
+import LoginScreen from './src/screens/LoginScreen';
 
 class Back extends React.Component{
   render(){
@@ -30,6 +31,9 @@ const HomeStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
+  'Login':{
+    screen:LoginScreen
+  }
 },{
   defaultNavigationOptions
 })
@@ -40,6 +44,9 @@ const SearchStack = createStackNavigator({
   },
   'Menu':{
     screen:MenuScreen
+  },
+  'Login':{
+    screen:LoginScreen
   }
 },{
   defaultNavigationOptions
@@ -51,6 +58,9 @@ const MessageStack = createStackNavigator({
   },
   'Menu':{
     screen:MenuScreen
+  },
+  'Login':{
+    screen:LoginScreen
   }
 },{
   defaultNavigationOptions
@@ -62,6 +72,9 @@ const MyStack = createStackNavigator({
   },
   'Menu':{
     screen:MenuScreen
+  },
+  'Login':{
+    screen:LoginScreen
   }
 },{
   defaultNavigationOptions
@@ -73,6 +86,9 @@ const TransactionStack = createStackNavigator({
   },
   'Menu':{
     screen:MenuScreen
+  },
+  'Login':{
+    screen:LoginScreen
   }
 },{
   defaultNavigationOptions
@@ -153,7 +169,6 @@ export default class App extends React.Component {
           time:false
       }
       AsyncStorage.clear()
-      this._setUser()
   }
 
   _setUser = async()=>{
@@ -177,9 +192,10 @@ export default class App extends React.Component {
         )
     }
     else{
-        return(
-            <AppContainer></AppContainer>
-        )
+      this._setUser() 
+      return(
+          <AppContainer></AppContainer>
+      )
     }
   }
 }

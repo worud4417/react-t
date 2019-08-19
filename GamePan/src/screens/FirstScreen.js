@@ -62,7 +62,7 @@ export default class FirstScreen extends React.Component {
     render(){
         return(
             <View>
-                <ContentListComponent content={this.state.content}></ContentListComponent>
+                <ContentListComponent content={this.state.content} dummy = {this._dummy}></ContentListComponent>
             </View>
         )
     }

@@ -2,13 +2,18 @@ import React,{Component} from 'react';
 import {View,Text,Image,StyleSheet,TouchableOpacity,AsyncStorage} from 'react-native';
 
 import LoginScreen from './LoginScreen';
+import { NavigationEvents } from 'react-navigation';
 
 export default class MyScreen extends Component{
+
+    constructor(props){
+        super(props)
+    }
 
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity onP ress={()=>{navigation.navigate('Menu')}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Menu')}}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -20,11 +25,24 @@ export default class MyScreen extends Component{
         }
     }
 
+    _getUser= async ()=> {
+        try{
+            await AsyncStorage.getItem('User').then((token)=>{
+                if(token == 'false'|| token == null){
+                    this.props.navigation.navigate("Login")
+                }
+            });
+        }
+        catch{
+            await AsyncStorage.setItem('error','true')
+        }
+    }
+
     render(){
         return(
             <View>
-                <LoginScreen></LoginScreen>
-                <Text>LoginSuccess</Text>
+                <NavigationEvents onWillFocus={payload => this._getUser()}></NavigationEvents>
+                <Text>Loginsuccess</Text>
             </View>
         )
     }
