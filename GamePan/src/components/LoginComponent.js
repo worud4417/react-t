@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
-import {View,Text,StyleSheet,AsyncStorage,Button,TextInput,TouchableOpacity,Image,KeyboardAvoidingView} from 'react-native';
+import {View,Text,StyleSheet,AsyncStorage,Button,TextInput,TouchableOpacity,Image,KeyboardAvoidingView,BackHandler} from 'react-native';
 
-export default class LoginScreen extends Component{
+export default class LoginComponent extends Component{
     
     constructor(props){
         super(props)
@@ -11,32 +11,23 @@ export default class LoginScreen extends Component{
         }
     }
 
-    static navigationOptions = ({navigation})=>{
-        return{
-            headerLeft:(
-                <TouchableOpacity onPress={()=>navigation.navigate('Home')}>
-                     <Image source={require('../../assets/back.png')} style={styles.headerLeft}></Image>
-                </TouchableOpacity>
-            ),
-        }
-    }
-
     _submit = async()=>{    
+//this will change to connect server------------------------------------------------------------------------------------------------------------------------------------------------
         let id = await AsyncStorage.getItem(this.state.id)
-        console.log(id)
         if(id == null){
             alert("ID error!")
             return null
         }
 
         if(id == this.state.password){
-            await AsyncStorage.setItem('User','true')
-            this.props.navigation.pop()
+            await AsyncStorage.multiSet([['name','문재인'],['photo','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0vfAcztlJffcn_QHnNxmdVM_4gND4kKlSRsWYibnm004AiNqw']])
+            this.props.setLogin()
         }
         else{
             alert("PASSWORD error!")
             return null
         }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     }
 
     render(){
@@ -56,11 +47,6 @@ const styles=StyleSheet.create({
         borderWidth:1,
         borderColor:'gray',
         margin:10
-    },
-    headerLeft:{
-        width:20,
-        height:20,
-        marginLeft:15
     },
     text:{
         fontSize:30

@@ -17,6 +17,11 @@ export default class MenuScreen extends Component{
 
     static navigationOptions = ({navigation})=>{
         return{
+            headerLeft:(
+                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                     <Image source={require('../../assets/back.png')} style={styles.headerLeft}></Image>
+                </TouchableOpacity>
+            ),
             headerRight:(
                 <TouchableOpacity>
                      <Image source={require('../../assets/bell.png')} style={styles.headerRight}></Image>

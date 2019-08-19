@@ -8,7 +8,6 @@ import MessageScreen from './src/screens/MessageScreen';
 import MyScreen from './src/screens/MyScreen';
 import TransactionScreen from './src/screens/TransactionScreen';
 import MenuScreen from './src/screens/MenuScreen'
-import LoginScreen from './src/screens/LoginScreen';
 
 class Back extends React.Component{
   render(){
@@ -31,9 +30,6 @@ const HomeStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
-  'Login':{
-    screen:LoginScreen
-  }
 },{
   defaultNavigationOptions
 })
@@ -45,9 +41,6 @@ const SearchStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
-  'Login':{
-    screen:LoginScreen
-  }
 },{
   defaultNavigationOptions
 })
@@ -59,9 +52,6 @@ const MessageStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
-  'Login':{
-    screen:LoginScreen
-  }
 },{
   defaultNavigationOptions
 })
@@ -73,9 +63,6 @@ const MyStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
-  'Login':{
-    screen:LoginScreen
-  }
 },{
   defaultNavigationOptions
 })
@@ -87,9 +74,6 @@ const TransactionStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
-  'Login':{
-    screen:LoginScreen
-  }
 },{
   defaultNavigationOptions
 })
@@ -157,7 +141,8 @@ const tabNavigator = createBottomTabNavigator({
     },
   }),
   initialRouteName:'Home'
-})
+}
+)
 
 const AppContainer = createAppContainer(tabNavigator)
 
@@ -170,7 +155,7 @@ export default class App extends React.Component {
       }
       AsyncStorage.clear()
   }
-
+//this will change to connect server----------------------------------------------------------------
   _setUser = async()=>{
     try{
       await AsyncStorage.setItem('SuperUser','0000')
@@ -179,6 +164,7 @@ export default class App extends React.Component {
       await AsyncStorage.setItem('error','true')
     }
   }
+//------------------------------------------------------------------------------------------------
 
   render(){
     setTimeout(()=>{
