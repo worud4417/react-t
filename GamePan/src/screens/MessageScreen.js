@@ -1,7 +1,16 @@
 import React,{Component} from 'react';
-import {View,Text,Image,StyleSheet,TouchableOpacity} from 'react-native';
+import {View,Text,Image,StyleSheet,TouchableOpacity,AsyncStorage} from 'react-native';
+
+import LoginComponent from '../components/LoginComponent';
 
 export default class MessageScreen extends Component{
+
+    constructor(props){
+        super(props)
+        this.state={
+            login:false
+        }
+    }
 
     static navigationOptions = ({navigation})=>{
         return{
@@ -18,12 +27,37 @@ export default class MessageScreen extends Component{
         }
     }
 
+    _setLogin(){
+        this.setState({login:true})
+    }
+
+    componentWillMount(){
+        this._checkLogin()
+    }
+
+    _checkLogin = async()=>{
+        try{
+            let login = await AsyncStorage.getItem("Login")
+            if(login != null){
+                this.setState({login:true})
+            }
+        }
+        catch(error){}
+    }
+
     render(){
-        return(
-            <View>
-                <Text>MessageScreen</Text>
-            </View>
-        )
+        if(!this.state.login){
+            return(
+                <LoginComponent setLogin={this._setLogin.bind(this)}></LoginComponent>
+            )
+        }
+        else{
+            return(
+                <View>
+                    <Text>MessageScreen</Text>
+                </View>
+            )
+        }
     }
 }
 

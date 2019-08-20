@@ -1,8 +1,9 @@
 import React,{Component} from 'react';
 import {View,Text,Image,StyleSheet,TouchableOpacity,AsyncStorage} from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 
 import LoginComponent from '../components/LoginComponent';
-import { NavigationEvents } from 'react-navigation';
+import LogoutButtonComponent from '../components/LogoutButtonComponent';
 
 export default class MyScreen extends Component{
 
@@ -47,6 +48,27 @@ export default class MyScreen extends Component{
         this.setState({login:true})
     }
 
+    _setLogout(){
+        this.setState({login:false})
+    }
+
+    componentWillMount(){
+        this._checkLogin()
+    }
+
+    _checkLogin = async()=>{
+        try{
+            let login = await AsyncStorage.getItem("Login")
+            if(login == null){
+                this.setState({login:false})
+            }
+            else{
+                this.setState({login:true})
+            }
+        }
+        catch(error){}
+    }
+
     render(){
         if(!this.state.login){
             return(
@@ -70,6 +92,7 @@ export default class MyScreen extends Component{
                     <View style={styles.list}>
                         <Text>거래내역</Text>
                         <Text>내가 쓴글</Text>
+                        <LogoutButtonComponent Logout={this._setLogout.bind(this)}></LogoutButtonComponent>
                     </View>
                 </View>
             )

@@ -21,6 +21,7 @@ export default class LoginComponent extends Component{
 
         if(id == this.state.password){
             await AsyncStorage.multiSet([['name','문재인'],['photo','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0vfAcztlJffcn_QHnNxmdVM_4gND4kKlSRsWYibnm004AiNqw']])
+            await AsyncStorage.setItem('Login','true')
             this.props.setLogin()
         }
         else{
