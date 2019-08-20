@@ -14,7 +14,7 @@ export default class ContentListComponent extends Component{
 
     renderContentList({item,index,separators}){
         return(
-            <ContentComponent content={item}></ContentComponent>
+            <ContentComponent content={item} navigation={this.props.navigation}></ContentComponent>
         )
     }
 

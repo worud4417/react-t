@@ -1,7 +1,12 @@
 import React,{Component} from 'react';
-import {View,Text,Image,StyleSheet,TouchableOpacity} from 'react-native';
+import {View,Text,TouchableOpacity,Image,StyleSheet} from 'react-native';
+import {NavigationEvents} from 'react-navigation';
 
-export default class TransactionScreen extends Component{
+export default class DetailContentScreen extends Component{
+
+    constructor(props){
+        super(props)
+    }
 
     static navigationOptions = ({navigation})=>{
         return{
@@ -17,11 +22,11 @@ export default class TransactionScreen extends Component{
             ),
         }
     }
-      
+
     render(){
         return(
             <View>
-                <Text>TransactionScreen</Text>
+                <Text>DetailContent</Text>
             </View>
         )
     }

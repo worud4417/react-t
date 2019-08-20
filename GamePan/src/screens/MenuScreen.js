@@ -18,7 +18,7 @@ export default class MenuScreen extends Component{
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity onPress={()=>navigation.goBack()}>
+                <TouchableOpacity onPress={()=>navigation.pop()}>
                      <Image source={require('../../assets/back.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -33,7 +33,7 @@ export default class MenuScreen extends Component{
     render(){
         return(
             <View>
-                <NavigationEvents onWillBlur={payload=>this.props.navigation.pop()}></NavigationEvents>
+                <NavigationEvents onDidBlur={payload=>this.props.navigation.pop()}></NavigationEvents>
                 <MenuListComponent name='Game' content={[{name:'LOL'},{name:'BATTALGROUND'}]}></MenuListComponent>
                 <MenuListComponent name='Coin' content={[{name:'BITCOIN'}]}></MenuListComponent>
                 <MenuListComponent name='Etc' content={[{name:'FREE'}]}></MenuListComponent>
