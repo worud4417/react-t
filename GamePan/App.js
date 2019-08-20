@@ -9,6 +9,7 @@ import MyScreen from './src/screens/MyScreen';
 import TransactionScreen from './src/screens/TransactionScreen';
 import MenuScreen from './src/screens/MenuScreen';
 import DetailContentScreen from './src/screens/DetailContentScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 class Back extends React.Component{
   render(){
@@ -69,6 +70,9 @@ const MyStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
+  'Login':{
+    screen:LoginScreen
+  }
 },{
   defaultNavigationOptions
 })

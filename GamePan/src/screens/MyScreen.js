@@ -29,9 +29,14 @@ export default class MyScreen extends Component{
         }
     }
 
+    componentWillMount(){
+        this.props.navigation.push("Login")
+    }
+
     render(){
         return(
             <View style={{flex:1}}>
+                <NavigationEvents onWillFocus={payload=>this.props.navigation.push("Login")}></NavigationEvents>
                  <View style={{flex:1,flexDirection:'row', borderBottomWidth:2}}>
                     <View style={{flex:1}}>
                         <Image source={{uri:this.state.photo}} style={styles.photo}></Image>
