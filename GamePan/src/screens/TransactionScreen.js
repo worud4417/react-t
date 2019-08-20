@@ -6,7 +6,7 @@ export default class TransactionScreen extends Component{
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity onPress={()=>{navigation.push('Menu')}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Menu')}}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),

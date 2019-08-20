@@ -1,14 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View,Image,ImageBackground,AsyncStorage} from 'react-native';
-import {createAppContainer,createStackNavigator,createBottomTabNavigator, createSwitchNavigator} from 'react-navigation'
+import {createAppContainer,createStackNavigator,createBottomTabNavigator} from 'react-navigation'
 
 import FirstScreen from './src/screens/FirstScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import MessageScreen from './src/screens/MessageScreen';
 import MyScreen from './src/screens/MyScreen';
 import TransactionScreen from './src/screens/TransactionScreen';
-import MenuScreen from './src/screens/MenuScreen';
-import DetailContentScreen from './src/screens/DetailContentScreen';
+import MenuScreen from './src/screens/MenuScreen'
 
 class Back extends React.Component{
   render(){
@@ -24,8 +23,6 @@ const defaultNavigationOptions={
   headerTitle:<Back></Back>
 };
 
-let tabBarVisibleflag = true
-
 const HomeStack = createStackNavigator({
   'First':{
     screen:FirstScreen
@@ -33,9 +30,6 @@ const HomeStack = createStackNavigator({
   'Menu':{
     screen:MenuScreen
   },
-  'DetailContent':{
-    screen:DetailContentScreen
-  }
 },{
   defaultNavigationOptions
 })
@@ -145,25 +139,12 @@ const tabNavigator = createBottomTabNavigator({
         elevation: 5
       }
     },
-    tabBarVisible : tabBarVisibleflag
   }),
-  initialRouteName:'Home',
+  initialRouteName:'Home'
 }
 )
 
-HomeStack.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  if (navigation.state.index == 1) {
-    tabBarVisible = false;
-  }
-  return tabBarVisibleflag = tabBarVisible
-};
-
-const AppNavigator= createSwitchNavigator({
-  Home:tabNavigator
-})
-
-const AppContainer = createAppContainer(AppNavigator)
+const AppContainer = createAppContainer(tabNavigator)
 
 export default class App extends React.Component {
 

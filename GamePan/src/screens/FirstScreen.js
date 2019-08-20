@@ -47,7 +47,7 @@ export default class FirstScreen extends React.Component {
     static navigationOptions = ({navigation})=>{
         return{
             headerLeft:(
-                <TouchableOpacity onPress={()=>{navigation.push('Menu')}}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('Menu')}}>
                     <Image source={require('../../assets/menu.png')} style={styles.headerLeft}></Image>
                 </TouchableOpacity>
             ),
@@ -62,7 +62,7 @@ export default class FirstScreen extends React.Component {
     render(){
         return(
             <View>
-                <ContentListComponent content={this.state.content} dummy = {this._dummy} navigation={this.props.navigation}></ContentListComponent>
+                <ContentListComponent content={this.state.content} dummy = {this._dummy}></ContentListComponent>
             </View>
         )
     }
